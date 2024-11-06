@@ -1,0 +1,5 @@
+mov 3 acc        # acc = 3
+prt acc          # Deve imprimir 3
+sub 1            # acc = acc - 1
+jgt -2           # Volta duas linhas se acc > 0
+prt acc          # Deve imprimir 0, ao sair do loop

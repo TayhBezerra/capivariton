@@ -1,0 +1,4 @@
+mov 10 acc       # Move 10 para o registrador acc
+mov acc dat      # Copia o valor de acc para dat
+prt acc          # Deve imprimir 10
+prt dat          # Deve imprimir 10

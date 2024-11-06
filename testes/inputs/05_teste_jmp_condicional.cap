@@ -1,0 +1,8 @@
+mov 5 acc        # acc = 5
+jgt 2            # Salta duas linhas adiante, pois acc > 0
+prt acc          # Não deve ser impresso
+sub 5            # acc = 0
+jeq 2            # Salta duas linhas adiante, pois acc == 0
+prt acc          # Não deve ser impresso
+mov 3 acc        # acc = 3
+prt acc          # Deve imprimir 3

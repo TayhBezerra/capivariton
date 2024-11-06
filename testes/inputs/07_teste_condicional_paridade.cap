@@ -1,0 +1,5 @@
+mov 4 acc        # acc = 4
+mod 2            # acc = acc % 2 = 0
+jeq 2            # Salta duas linhas se acc == 0
+prt 1            # Não deve ser impresso
+prt 0            # Deve imprimir 0 (4 é par)
