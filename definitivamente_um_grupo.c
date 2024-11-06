@@ -18,5 +18,6 @@ typedef struct instr {
 } Instruction;
 
 int main(int argc, char *argv[argc + 1]) {
+  puts("Teste");
   return EXIT_SUCCESS;
 }
