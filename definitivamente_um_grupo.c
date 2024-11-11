@@ -1,3 +1,13 @@
+
+/***************************************
+ * Hytalo M. Bassi,
+ * Maryana Silva Catonho,
+ * Tayssa Silva Bezerra,
+ * Trabalho II,
+ * Professor: Diego Padilha Rubert
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
