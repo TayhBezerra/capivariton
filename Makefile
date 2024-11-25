@@ -1,9 +1,9 @@
 CC = gcc
-CFLAGS = -Wall -std=c99 -pedantic
+CFLAGS = -Wall -std=c99 -pedantic -g
 
 TARGET = interpretador
 
-SRCS = definitivamente_um_grupo.c
+SRCS = alloc.c definitivamente_um_grupo.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)
