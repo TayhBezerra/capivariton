@@ -19,10 +19,14 @@ typedef struct _instr {
   int val1;
   
   Registrator *reg2;
-
-  struct instr *prev;
-  struct instr *next;
+ 
+  struct _instr *prev;
+  struct _instr *next;
 } MetaInstruction;
+
+int isRegister(MetaInstruction i) {
+  return i.reg1 != NULL;
+}
 
 Registrator *loadRegSymbol(char *op) {
   Registrator *reg = 
@@ -37,11 +41,11 @@ Registrator *loadRegSymbol(char *op) {
 MetaInstruction mkinstr(char *op, char *reg1, int val1, char *reg2) {
   MetaInstruction instr;
   Operations nop = 
-    strcmp(op, "ADD") == 0 ? ADD :
-    strcmp(op, "JMP") == 0 ? JMP :
-    strcmp(op, "MOV") == 0 ? MOV :
-    strcmp(op, "PRT") == 0 ? PRT :
-    strcmp(op, "MUL") == 0 ? MUL : MOD;
+    strcmp(op, "add") == 0 ? ADD :
+    strcmp(op, "jmp") == 0 ? JMP :
+    strcmp(op, "mov") == 0 ? MOV :
+    strcmp(op, "prt") == 0 ? PRT :
+    strcmp(op, "mul") == 0 ? MUL : MOD;
 
   instr.val1 = val1;
   instr.op = nop;
@@ -53,7 +57,35 @@ MetaInstruction mkinstr(char *op, char *reg1, int val1, char *reg2) {
   return instr;
 }
 
+void load_instr(MetaInstruction *first) {
+  MetaInstruction *ptr = first;
+  while (ptr != NULL) {
+    switch (ptr->op) {
+      case ADD:
+        if (isRegister(*ptr))
+          radd(ptr->reg1, acc);
+        else
+          add(ptr->val1, acc);
+      break;
+      
+      case MOV:
+        if (isRegister(*ptr))
+          rmov(ptr->reg1, ptr->reg2);
+        else
+          mov(ptr->val1, ptr->reg2);
+      break;
+      
+      case PRT:
+        rprint(ptr->reg1);
+      break;
+      
+      default:
+      break;
+    }
 
+    ptr = ptr->next;
+  } 
+}
 
 void init_all_reg() {
   pc = reg_alloc(PC);
@@ -81,9 +113,16 @@ void free_all_reg() {
 int main(int argc, char *argv[argc + 1]) {
   init_all_reg();
   
-  MetaInstruction instr = mkinstr("ADD", "acc", 1, "");
-  printf("%d\n", instr.val1);
-  
+  MetaInstruction instr = mkinstr("add", "", 10, "");
+  MetaInstruction instr2 = mkinstr("prt", "acc", -1, "");
+  MetaInstruction instr3 = mkinstr("prt", "pc", -1, "");
+
+  instr.next = &instr2;
+  instr2.next = &instr3;
+  instr2.prev = &instr;
+  instr3.prev = &instr2;
+
+  load_instr(&instr);
   free_all_reg();
   return EXIT_SUCCESS;
 }
