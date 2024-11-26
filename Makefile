@@ -3,7 +3,7 @@ CFLAGS = -Wall -std=c99 -pedantic -g
 
 TARGET = interpretador
 
-SRCS = alloc.c definitivamente_um_grupo.c
+SRCS = alloc.c definitivamente_um_grupo.c stdarch.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)
