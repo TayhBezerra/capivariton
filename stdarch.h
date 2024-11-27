@@ -93,6 +93,11 @@ void div__(int val, Registrator *reg);
 /// @param reg Ponteiro para o registrador.
 void mod(int val, Registrator *reg);
 
+/// @brief Imprime um valor.
+/// @param val Valor imprimir.
+void prt(int val);
+
+
 /// @brief Move o valor de um registrador para outro.
 /// @param reg1 Ponteiro para o registrador de origem.
 /// @param reg2 Ponteiro para o registrador de destino.

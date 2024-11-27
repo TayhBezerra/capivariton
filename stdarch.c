@@ -25,6 +25,11 @@ void mod(int val, Registrator *reg) {
   *(reg->addr) %= val;
 }
 
+
+void prt(int val) {
+  printf("%d\n", val);
+}
+
 void rmov(Registrator *reg1, Registrator *reg2) {
   mov(*(reg1->addr), reg2);
 }
@@ -60,16 +65,22 @@ void jmp(int i, Registrator *pc) {
 void jeq(int i, Registrator *pc, Registrator *acc) {
   if (*(acc->addr) == 0)
     jmp(i, pc);
+  else
+    jmp(1, pc);
 }
 
 void jlt(int i, Registrator *pc, Registrator *acc) {
   if (*(acc->addr) < 0)
     jmp(i, pc);
+  else
+    jmp(1, pc);
 }
 
 
 void jgt(int i, Registrator *pc, Registrator *acc) {
   if (*(acc->addr) > 0)
     jmp(i, pc);
+  else
+    jmp(1, pc);
 }
 

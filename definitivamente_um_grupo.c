@@ -122,7 +122,10 @@ void load_op(MetaInstruction *i) {
       break;
 
       case PRT:
-        rprint(i->reg1);
+        if (isRegister(*i))
+          rprint(i->reg1);
+        else
+          prt(i->val1);
       break;
       
       case MOD:
@@ -134,9 +137,9 @@ void load_op(MetaInstruction *i) {
 
   }
 
-  if (i->op != JMP ||
-      i->op != JEQ ||
-      i->op != JLT ||
+  if (i->op != JMP &&
+      i->op != JEQ &&
+      i->op != JLT &&
       i->op != JGT)
     jmp(1, pc);
 }
