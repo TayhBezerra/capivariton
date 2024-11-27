@@ -15,11 +15,16 @@ typedef enum registrators {
 
 typedef enum operations {
   ADD,
+  SUB,
   JMP,
   MOV,
   PRT,
   MUL,
   MOD,
+  DIV,
+  JEQ,
+  JLT,
+  JGT,
 } Operations;
 
 
@@ -68,10 +73,20 @@ void mov(int val, Registrator *reg);
 /// @param reg Ponteiro para o registrador.
 void add(int val, Registrator *reg);
 
+/// @brief Subtrai um valor ao registrador.
+/// @param val Valor a ser subtraido.
+/// @param reg Ponteiro para o registrador.
+void sub(int val, Registrator *reg);
+
 /// @brief Multiplica o valor do registrador por um valor.
 /// @param val Valor para multiplicação.
 /// @param reg Ponteiro para o registrador.
 void mul(int val, Registrator *reg);
+
+/// @brief Divide o valor do registrador por um valor.
+/// @param val Valor para divisao.
+/// @param reg Ponteiro para o registrador.
+void div__(int val, Registrator *reg);
 
 /// @brief Calcula o módulo do valor do registrador.
 /// @param val Valor para cálculo do módulo.
@@ -88,10 +103,21 @@ void rmov(Registrator *reg1, Registrator *reg2);
 /// @param reg2 Ponteiro para o registrador de destino.
 void radd(Registrator *reg1, Registrator *reg2);
 
+/// @brief Subtrai o valor de um registrador a outro.
+/// @param reg1 Ponteiro para o registrador de origem.
+/// @param reg2 Ponteiro para o registrador de destino.
+void rsub(Registrator *reg1, Registrator *reg2);
+
 /// @brief Multiplica o valor de um registrador com outro.
 /// @param reg1 Ponteiro para o registrador de origem.
 /// @param reg2 Ponteiro para o registrador de destino.
 void rmul(Registrator *reg1, Registrator *reg2);
+
+
+/// @brief Divide o valor de um registrador com outro.
+/// @param reg1 Ponteiro para o registrador de origem.
+/// @param reg2 Ponteiro para o registrador de destino.
+void rdiv(Registrator *reg1, Registrator *reg2);
 
 /// @brief Calcula o módulo do valor de um registrador com outro.
 /// @param reg1 Ponteiro para o registrador de origem.
@@ -101,5 +127,13 @@ void rmod(Registrator *reg1, Registrator *reg2);
 /// @brief Imprime o valor armazenado em um registrador.
 /// @param reg Ponteiro para o registrador.
 void rprint(Registrator *reg);
+
+void jmp(int i, Registrator *pc);
+
+void jeq(int i, Registrator *pc, Registrator *acc);
+
+void jlt(int i, Registrator *pc, Registrator *acc);
+
+void jgt(int i, Registrator *pc, Registrator *acc);
 
 #endif
